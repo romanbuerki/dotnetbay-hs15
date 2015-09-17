@@ -30,7 +30,7 @@ The following products / tools are needed to contribute / fork.
 * NCrunch [http://www.ncrunch.net/](http://www.ncrunch.net/ http://www.ncrunch.net/)
 
 ## Authors
-* Michael Schnyder
+* Roman Bürki, Andreas Lüscher
 
 ## License
 Licensed under the MIT License
