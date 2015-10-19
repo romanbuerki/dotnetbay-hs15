@@ -1,0 +1,47 @@
+﻿<Window x:Class="DotNetBay.WPF.SellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpftk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:DotNetBay.WPF"
+        d:DataContext="{d:DesignInstance Type=viewModel:SellViewModel}"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:viewModel="clr-namespace:DotNetBay.WPF.ViewModel"
+        mc:Ignorable="d"
+        Title="SellView" Height="300" Width="500" Name="SellViewWindow">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Add New Auction" FontSize="24" Grid.Row="0" Grid.Column="0"></Label>
+        <Label Grid.Row="1" Content="Title"></Label>
+        <TextBox Text="{Binding Title}" Grid.Row="1" Grid.Column="1" ></TextBox>
+        <Label Grid.Row="2" Grid.Column="0" Content="Description"></Label>
+        <TextBox Text="{Binding Description}" Grid.Row="2" Grid.Column="1"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" Content="Start Price"></Label>
+        <TextBox Text="{Binding StartPrice}" Grid.Row="3" Grid.Column="1"></TextBox>
+        <Label Grid.Row="4" Grid.Column="0" Content="Start"></Label>
+        <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding StartDateTimeUtc}" DisplayDateStart="{x:Static sys:DateTime.Now}"></DatePicker>
+        <Label Grid.Row="5" Grid.Column="0" Content="End"></Label>
+        <DatePicker Grid.Row="5" Grid.Column="1" SelectedDate="{Binding EndDateTimeUtc}" DisplayDateStart="{x:Static sys:DateTime.Now}"></DatePicker>
+        <Grid Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Add Auction"  Command="{Binding SaveAuctionCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=SellViewWindow}" Margin="0, 0, 10, 0" Width="100"></Button>
+            <Button Grid.Column="1" Content="Close" Click="ButtonClose_OnClick" Width="100"></Button>
+        </Grid>
+    </Grid>
+</Window>

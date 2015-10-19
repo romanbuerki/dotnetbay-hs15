@@ -1,0 +1,42 @@
+﻿<Window x:Class="DotNetBay.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotNetBay.WPF"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="1000">
+   <Window.Resources>
+        <local:BooleanToStatusTextConverter x:Key="booleanToStatusTextConverter" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+    <Grid>
+       <Grid.RowDefinitions>
+           <RowDefinition Height="Auto"></RowDefinition>
+           <RowDefinition></RowDefinition>
+       </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="New Auction" Click="ButtonBase_OnClick" Width="100px" HorizontalAlignment="Left"></Button>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Auctions}" AutoGenerateColumns="False" IsReadOnly="True" Name="AuctionsGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Title}" Header="Auction" />
+                <DataGridTextColumn Binding="{Binding Path=IsClosed, Converter={StaticResource booleanToStatusTextConverter}}" />
+                <DataGridTextColumn Binding="{Binding Path=StartPrice}" Header="Start Price" />
+                <DataGridTextColumn Binding="{Binding Path=CurrentPrice}" Header="Current Price" />
+                <DataGridTextColumn Binding="{Binding Path=Bids}" Header="Bids" />
+                <DataGridTextColumn Binding="{Binding Path=StartDateTimeUtc}" Header="Starts" />
+                <DataGridTextColumn Binding="{Binding Path=EndDateTimeUtc}" Header="Ends" />
+                <DataGridTextColumn Binding="{Binding Path=Seller}" Header="Seller" />
+                <DataGridTextColumn Binding="{Binding Path=CloseDateTimeUtc}" Header="Closed" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Green" Content="BUY" Click="ButtonBuy_OnClick" Visibility="{Binding IsRunning, Converter={StaticResource BoolToVis}}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+           </DataGrid>
+    </Grid>
+</Window>
