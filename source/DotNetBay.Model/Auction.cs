@@ -37,6 +37,7 @@ namespace DotNetBay.Model
         /// </summary>
         public DateTime CloseDateTimeUtc { get; set; }
 
+        
         public Member Seller { get; set; }
 
         public Member Winner { get; set; }

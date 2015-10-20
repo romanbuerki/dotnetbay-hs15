@@ -23,6 +23,7 @@ namespace DotNetBay.WPF
 
         public App()
         {
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
             this.MainRepository = new FileSystemMainRepository("repo8");
             this.AuctionRunner = new AuctionRunner(this.MainRepository);
             this.FillRepo();
