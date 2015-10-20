@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DotNetBay.Core;
 using DotNetBay.Model;
+using DotNetBay.WPF.ViewModel;
 
 namespace DotNetBay.WPF
 {
@@ -29,29 +30,13 @@ namespace DotNetBay.WPF
 
         public MainWindow()
         {
-            if ((Application.Current as App) != null)
-            {
-                var service = new AuctionService(((App)Application.Current).MainRepository, new SimpleMemberService(((App)Application.Current).MainRepository));
-              
-                foreach (var auction in service.GetAll())
-                {
-                    this.Auctions.Add(auction);
-                }
-            }
-            DataContext = this;
+            
+            DataContext = new MainViewModel();
             InitializeComponent();
             
           
         }
 
-       
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-
-            new SellView().ShowDialog();
-
-        }
 
         private void ButtonBuy_OnClick(object sender, RoutedEventArgs e)
         {

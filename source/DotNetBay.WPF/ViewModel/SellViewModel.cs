@@ -47,14 +47,8 @@ namespace DotNetBay.WPF.ViewModel
         public SellViewModel()
         {
             SaveAuctionCommand = new RelayCommand<Window>(this.SaveAuctionContent);
+            CloseWindowCommand = new RelayCommand<Window>(this.CloseAuctionWindow);
         }
-
-     
-        protected override void OnPropertyChanged(string propertyName = null)
-        {
-            throw new NotImplementedException();
-        }
-
         public ICommand SaveAuctionCommand { get; private set; }
 
         public ICommand CloseWindowCommand { get; private set; }
@@ -66,6 +60,11 @@ namespace DotNetBay.WPF.ViewModel
 
             this._auction.Seller = memberService.GetCurrentMember();
             service.Save(this._auction);
+            window.Close();
+        }
+
+        private void CloseAuctionWindow(Window window)
+        {
             window.Close();
         }
     }

@@ -28,11 +28,5 @@ namespace DotNetBay.WPF
             InitializeComponent();
             this.DataContext = new SellViewModel();
         }
-       
-
-        private void ButtonClose_OnClick(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
