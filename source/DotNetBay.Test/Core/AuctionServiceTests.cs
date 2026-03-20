@@ -105,6 +105,33 @@ namespace DotNetBay.Test.Core
             service.PlaceBid(auction, 100);
         }
 
+        [TestCase]
+        public void GivenABauprojektAuction_WithParzelleAndBaugesuchnummer_FieldsAreStoredAndRetrieved()
+        {
+            var repo = new InMemoryMainRepository();
+            var userService = new SimpleMemberService(repo);
+            var service = new AuctionService(repo, userService);
+
+            var auction = new Auction()
+            {
+                Title = "Bauprojekt Hungerbergstrasse 53, Aarau",
+                Description = "Bauprojekt in Aarau, Hungerbergstrasse 53, Parzelle 74. Baugesuchnummer BG 2025.234",
+                StartPrice = 0,
+                StartDateTimeUtc = DateTime.UtcNow.AddHours(1),
+                EndDateTimeUtc = DateTime.UtcNow.AddHours(2),
+                Parzelle = "74",
+                Baugesuchnummer = "BG 2025.234"
+            };
+
+            auction.Seller = userService.Add("Gemeinde Aarau", "bauverwaltung@aarau.ch");
+
+            service.Save(auction);
+
+            var auctionFromService = service.GetAll().First(a => a.Title == "Bauprojekt Hungerbergstrasse 53, Aarau");
+            Assert.AreEqual("74", auctionFromService.Parzelle);
+            Assert.AreEqual("BG 2025.234", auctionFromService.Baugesuchnummer);
+        }
+
         private static Auction CreateGeneratedAuction()
         {
             return new Auction()

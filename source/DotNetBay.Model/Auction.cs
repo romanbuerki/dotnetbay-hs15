@@ -18,6 +18,16 @@ namespace DotNetBay.Model
         
         public string Description { get; set; }
 
+        /// <summary>
+        /// Gets or sets the plot number (Parzelle) identifying the land parcel, e.g. "74".
+        /// </summary>
+        public string Parzelle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the building permit application number (Baugesuchnummer), e.g. "BG 2025.234".
+        /// </summary>
+        public string Baugesuchnummer { get; set; }
+
         public byte[] Image { get; set; }
 
         public double CurrentPrice { get; set; }
